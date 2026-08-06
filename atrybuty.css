@@ -1,259 +1,632 @@
+/* =========================================================
+   NIGHT CITY PBF — ATTRIBUTE MATRIX
+   Pełny arkusz dla HTML umieszczanego w postach Forumotion.
+   Zastępuje całą poprzednią zawartość pliku atrybuty.css.
+   ========================================================= */
+
+/* Forumotion potrafi wstawiać <br> pomiędzy elementami HTML.
+   W układzie grid takie znaczniki stają się dodatkowymi komórkami. */
+.nc-attributes br {
+  display: none !important;
+}
+
+/* Główny motyw ogranicza zwykłą treść posta do ok. 860 px.
+   Rozszerzamy tylko post zawierający Attribute Matrix. */
+.nc-thread-post .postbody .content:has(.nc-attributes),
+.postbody .content:has(.nc-attributes) {
+  width: 100% !important;
+  max-width: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  overflow: visible !important;
+}
+
+.nc-thread-post .postbody:has(.nc-attributes),
+.postbody:has(.nc-attributes) {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+
 .nc-attributes {
-  --nc-bg: #05080d;
-  --nc-panel: #090e15;
-  --nc-line: #263342;
-  --nc-text: #c8d0d8;
-  --nc-muted: #687381;
-  --nc-cyan: #16dce5;
-  --nc-magenta: #f02b92;
+  --matrix-bg: #05080d;
+  --matrix-panel: #090e15;
+  --matrix-panel-alt: #070b11;
+  --matrix-line: #263342;
+  --matrix-text: #c8d0d8;
+  --matrix-strong: #f0f3f4;
+  --matrix-muted: #687381;
+  --matrix-cyan: #16dce5;
+  --matrix-magenta: #f02b92;
+  --matrix-violet: #9a5cff;
+  --matrix-yellow: #d7bd42;
+  --matrix-color: var(--matrix-cyan);
 
-  width: min(100%, 1050px);
-  margin: 30px auto;
-  color: var(--nc-text);
-  font-family: "Roboto", Arial, sans-serif;
+  position: relative;
+  display: block !important;
+  width: 100% !important;
+  max-width: 1320px !important;
+  margin: 8px auto 24px !important;
+  padding: 0 !important;
+  color: var(--matrix-text) !important;
+  font-family: var(--nc-body, "Inter", Arial, sans-serif) !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  text-align: left !important;
+  white-space: normal !important;
 }
 
+.nc-attributes,
 .nc-attributes * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
+
+.nc-attributes p,
+.nc-attributes h2,
+.nc-attributes strong,
+.nc-attributes span,
+.nc-attributes i,
+.nc-attributes b {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+}
+
+.nc-attributes p {
+  text-align: left !important;
+}
+
+/* =========================
+   Nagłówek
+   ========================= */
 
 .nc-attributes__header {
   position: relative;
-  margin-bottom: 20px;
-  padding: 26px 30px;
+  min-height: 245px;
+  margin: 0 0 16px !important;
+  padding: 38px 42px 34px !important;
   overflow: hidden;
+  border: 1px solid var(--matrix-line);
+  border-left: 4px solid var(--matrix-cyan);
   background:
-    linear-gradient(90deg, rgb(22 220 229 / 8%), transparent 55%),
-    var(--nc-bg);
-  border: 1px solid var(--nc-line);
-  border-left: 3px solid var(--nc-cyan);
+    linear-gradient(105deg, rgba(22, 220, 229, .09), transparent 48%),
+    radial-gradient(circle at 92% 10%, rgba(240, 43, 146, .09), transparent 28%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 79px,
+      rgba(255, 255, 255, .015) 80px
+    ),
+    var(--matrix-bg);
+  box-shadow:
+    inset 0 0 0 5px rgba(1, 3, 6, .72),
+    7px 7px 0 rgba(0, 0, 0, .32);
+}
+
+.nc-attributes__header::before {
+  content: "SYS_VER 2.0.7";
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  color: rgba(22, 220, 229, .28);
+  font: 700 8px/1 var(--nc-mono, "Space Mono", monospace);
+  letter-spacing: .16em;
 }
 
 .nc-attributes__header::after {
   content: "";
   position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 100px;
-  height: 5px;
+  right: 28px;
+  bottom: 28px;
+  width: 112px;
+  height: 6px;
   background:
     repeating-linear-gradient(
       90deg,
-      var(--nc-magenta) 0 13px,
-      transparent 13px 18px
+      var(--matrix-magenta) 0 13px,
+      transparent 13px 19px
     );
+  opacity: .9;
 }
 
 .nc-attributes__eyebrow,
 .nc-label {
-  display: block;
-  color: var(--nc-cyan);
-  font-family: monospace;
-  font-size: 10px;
-  letter-spacing: .16em;
+  display: block !important;
+  color: var(--matrix-color) !important;
+  font: 700 9px/1.35 var(--nc-mono, "Space Mono", monospace) !important;
+  letter-spacing: .17em !important;
+  text-transform: uppercase;
+}
+
+.nc-attributes__eyebrow {
+  color: var(--matrix-cyan) !important;
 }
 
 .nc-attributes__header h2 {
-  margin: 7px 0;
-  color: #fff;
-  font-family: monospace;
-  font-size: clamp(24px, 4vw, 40px);
-  letter-spacing: .08em;
+  position: relative;
+  margin: 58px 0 0 !important;
+  padding: 0 0 15px !important;
+  color: var(--matrix-strong) !important;
+  font: 500 clamp(30px, 4vw, 53px)/1 var(--nc-mono, "Space Mono", monospace) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase;
+}
+
+.nc-attributes__header h2::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--matrix-cyan),
+    rgba(22, 220, 229, .18) 65%,
+    transparent
+  );
 }
 
 .nc-attributes__header p {
-  max-width: 680px;
-  margin: 0;
-  color: var(--nc-muted);
-  line-height: 1.65;
+  max-width: 760px !important;
+  margin: 28px 24px 0 !important;
+  color: var(--matrix-muted) !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
 }
 
+/* =========================
+   Karta atrybutu — desktop
+   ========================= */
+
 .nc-attribute {
-  --attribute-color: var(--nc-cyan);
+  --matrix-color: var(--matrix-cyan);
 
   position: relative;
-  margin: 14px 0;
-  padding: 22px 26px;
+  display: grid !important;
+  grid-template-columns:
+    78px
+    minmax(225px, 1.15fr)
+    minmax(205px, .95fr)
+    minmax(205px, .95fr)
+    minmax(250px, 1.1fr);
+  grid-template-rows: auto auto 1fr;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 220px;
+  margin: 13px 0 !important;
+  padding: 0 !important;
   overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--matrix-color) 65%, var(--matrix-line));
+  border-left: 4px solid var(--matrix-color);
   background:
     linear-gradient(
-      110deg,
-      color-mix(in srgb, var(--attribute-color) 7%, transparent),
-      transparent 38%
+      104deg,
+      color-mix(in srgb, var(--matrix-color) 7%, transparent),
+      transparent 34%
     ),
-    var(--nc-panel);
-  border: 1px solid var(--nc-line);
-  border-left: 3px solid var(--attribute-color);
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 4px,
+      rgba(255, 255, 255, .012) 5px
+    ),
+    var(--matrix-panel);
+  box-shadow:
+    inset 0 0 0 4px rgba(1, 3, 6, .48),
+    5px 5px 0 rgba(0, 0, 0, .22);
 }
 
 .nc-attribute::before {
   content: "";
   position: absolute;
+  z-index: 2;
   top: 0;
   right: 0;
-  width: 75px;
-  height: 2px;
-  background: var(--attribute-color);
-  box-shadow: 0 0 12px var(--attribute-color);
+  width: 92px;
+  height: 3px;
+  background: var(--matrix-color);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--matrix-color) 45%, transparent);
+}
+
+.nc-attribute::after {
+  content: "ATTRIBUTE NODE";
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  color: color-mix(in srgb, var(--matrix-color) 24%, transparent);
+  font: 700 7px/1 var(--nc-mono, "Space Mono", monospace);
+  letter-spacing: .14em;
 }
 
 .nc-attribute--cyan {
-  --attribute-color: var(--nc-cyan);
+  --matrix-color: var(--matrix-cyan);
 }
 
 .nc-attribute--magenta {
-  --attribute-color: var(--nc-magenta);
+  --matrix-color: var(--matrix-magenta);
 }
 
-.nc-attribute__top {
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  gap: 15px;
-  align-items: center;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--nc-line);
+.nc-attribute--violet {
+  --matrix-color: var(--matrix-violet);
 }
+
+.nc-attribute--yellow {
+  --matrix-color: var(--matrix-yellow);
+}
+
+/* Wrappery z HTML nie tworzą własnych komórek.
+   Ich dzieci stają się bezpośrednimi elementami siatki. */
+.nc-attribute__top,
+.nc-attribute__content {
+  display: contents !important;
+}
+
+/* Numer */
 
 .nc-attribute__code {
-  color: var(--attribute-color);
-  font-family: monospace;
-  font-size: 26px;
-  text-align: center;
-  border-right: 1px solid var(--nc-line);
+  grid-column: 1;
+  grid-row: 1 / 4;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 22px 10px !important;
+  border-right: 1px solid color-mix(in srgb, var(--matrix-color) 28%, var(--matrix-line));
+  color: var(--matrix-color) !important;
+  font: 700 33px/1 var(--nc-mono, "Space Mono", monospace) !important;
+  text-align: center !important;
+}
+
+/* Nazwa */
+
+.nc-attribute__title {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 23px 20px 8px !important;
 }
 
 .nc-attribute__title span {
-  display: block;
-  color: var(--attribute-color);
-  font-family: monospace;
-  font-size: 20px;
-  letter-spacing: .1em;
+  display: block !important;
+  color: var(--matrix-color) !important;
+  font: 700 25px/1 var(--nc-display, "Rajdhani", sans-serif) !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase;
 }
 
 .nc-attribute__title strong {
-  display: block;
-  margin-top: 2px;
-  color: var(--nc-muted);
-  font-size: 10px;
-  letter-spacing: .22em;
+  display: block !important;
+  margin-top: 6px !important;
+  color: var(--matrix-text) !important;
+  font: 700 10px/1.25 var(--nc-mono, "Space Mono", monospace) !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase;
 }
+
+/* Typ atrybutu */
 
 .nc-attribute__status {
-  padding: 7px 10px;
-  color: var(--attribute-color);
-  font-family: monospace;
-  font-size: 9px;
-  letter-spacing: .12em;
-  border: 1px solid color-mix(
-    in srgb,
-    var(--attribute-color) 55%,
-    transparent
-  );
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  justify-self: start;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  margin: 2px 20px 0 !important;
+  padding: 7px 9px !important;
+  border: 1px solid color-mix(in srgb, var(--matrix-color) 62%, transparent);
+  color: var(--matrix-color) !important;
+  background: color-mix(in srgb, var(--matrix-color) 6%, transparent);
+  font: 700 8px/1.15 var(--nc-mono, "Space Mono", monospace) !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase;
 }
+
+/* Opis */
 
 .nc-attribute__description {
-  margin: 18px 0;
-  max-width: 800px;
-  line-height: 1.7;
+  grid-column: 2;
+  grid-row: 3;
+  align-self: start;
+  min-width: 0;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 15px 20px 23px !important;
+  color: var(--matrix-text) !important;
+  font-size: 13px !important;
+  line-height: 1.58 !important;
 }
 
-.nc-attribute__content {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 28px;
-  margin-top: 18px;
+/* Wpływa na */
+
+.nc-attribute__content > div:first-child {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 24px 18px !important;
+  border-left: 1px solid color-mix(in srgb, var(--matrix-color) 22%, var(--matrix-line));
+}
+
+/* Test */
+
+.nc-attribute__content > div:nth-child(2) {
+  grid-column: 4;
+  grid-row: 1 / 4;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 24px 18px !important;
+  border-left: 1px solid color-mix(in srgb, var(--matrix-color) 22%, var(--matrix-line));
 }
 
 .nc-tags {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 9px;
+  margin: 12px 0 0 !important;
+  padding: 0 !important;
 }
 
 .nc-tags span {
-  padding: 6px 9px;
-  color: #aab4bf;
-  font-size: 11px;
-  background: #0d141d;
-  border: 1px solid var(--nc-line);
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 7px 9px !important;
+  border: 1px solid color-mix(in srgb, var(--matrix-color) 48%, var(--matrix-line));
+  color: var(--matrix-text) !important;
+  background: color-mix(in srgb, var(--matrix-color) 5%, var(--matrix-panel-alt));
+  font: 500 10px/1.2 var(--nc-body, "Inter", Arial, sans-serif) !important;
 }
 
 .nc-test {
-  margin-top: 9px;
-  padding: 10px 12px;
-  color: #e6edf3;
-  font-family: monospace;
-  border-left: 2px solid var(--attribute-color);
-  background: #05090e;
+  display: flex !important;
+  align-items: center;
+  min-height: 76px;
+  margin: 12px 0 0 !important;
+  padding: 14px !important;
+  border-left: 3px solid var(--matrix-color);
+  color: var(--matrix-strong) !important;
+  background: #04070b;
+  font: 700 11px/1.55 var(--nc-mono, "Space Mono", monospace) !important;
 }
 
 .nc-test b {
-  margin: 0 5px;
-  color: var(--attribute-color);
+  margin: 0 6px !important;
+  color: var(--matrix-color) !important;
 }
 
+/* Skala */
+
 .nc-attribute__scale {
-  margin-top: 22px;
+  grid-column: 5;
+  grid-row: 1 / 4;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 24px 18px 22px !important;
+  border-left: 1px solid color-mix(in srgb, var(--matrix-color) 22%, var(--matrix-line));
 }
 
 .nc-scale {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(28px, 1fr));
   gap: 5px;
-  margin-top: 9px;
+  margin: 12px 0 0 !important;
+  padding: 0 !important;
 }
 
 .nc-scale i {
-  padding: 8px 2px;
-  color: #4f5b67;
-  font-family: monospace;
-  font-size: 10px;
-  font-style: normal;
-  text-align: center;
-  background: #070b10;
-  border: 1px solid #1d2732;
+  display: grid !important;
+  place-items: center;
+  min-width: 0;
+  min-height: 35px;
+  margin: 0 !important;
+  padding: 5px 2px !important;
+  border: 1px solid #24313d;
+  color: #53606c !important;
+  background: #060a0f;
+  font: 400 9px/1 var(--nc-mono, "Space Mono", monospace) !important;
+  font-style: normal !important;
+  text-align: center !important;
 }
 
 .nc-scale i.is-active {
-  color: var(--attribute-color);
-  background: color-mix(
-    in srgb,
-    var(--attribute-color) 10%,
-    #070b10
-  );
-  border-color: var(--attribute-color);
+  border-color: var(--matrix-color);
+  color: var(--matrix-color) !important;
+  background: color-mix(in srgb, var(--matrix-color) 12%, #060a0f);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--matrix-color) 55%, transparent);
 }
 
 .nc-scale__legend {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
-  margin-top: 6px;
-  color: var(--nc-muted);
-  font-family: monospace;
-  font-size: 9px;
+  gap: 12px;
+  margin: 10px 0 0 !important;
+  color: var(--matrix-muted) !important;
+  font: 400 7px/1.35 var(--nc-mono, "Space Mono", monospace) !important;
+  letter-spacing: .02em;
 }
 
-@media (max-width: 700px) {
+.nc-scale__legend span {
+  color: inherit !important;
+  font: inherit !important;
+}
+
+.nc-scale__legend span:last-child {
+  text-align: right !important;
+}
+
+/* =========================
+   Tablet / węższy post
+   ========================= */
+
+@media (max-width: 1100px) {
+  .nc-thread-post .postbody:has(.nc-attributes),
+  .postbody:has(.nc-attributes) {
+    padding-right: 14px !important;
+    padding-left: 14px !important;
+  }
+
   .nc-attribute {
-    padding: 18px;
+    display: block !important;
+    min-height: 0;
+    padding: 0 !important;
   }
 
   .nc-attribute__top {
-    grid-template-columns: 38px 1fr;
+    display: grid !important;
+    grid-template-columns: 62px minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: center;
+    border-bottom: 1px solid color-mix(in srgb, var(--matrix-color) 25%, var(--matrix-line));
+  }
+
+  .nc-attribute__content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nc-attribute__code,
+  .nc-attribute__title,
+  .nc-attribute__status,
+  .nc-attribute__description,
+  .nc-attribute__content > div:first-child,
+  .nc-attribute__content > div:nth-child(2),
+  .nc-attribute__scale {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .nc-attribute__code {
+    min-height: 94px;
+    padding: 18px 8px !important;
+  }
+
+  .nc-attribute__title {
+    padding: 20px 17px !important;
+  }
+
+  .nc-attribute__status {
+    align-self: center;
+    margin: 0 18px 0 0 !important;
+  }
+
+  .nc-attribute__description {
+    padding: 19px 22px !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--matrix-color) 20%, var(--matrix-line));
+  }
+
+  .nc-attribute__content > div:first-child,
+  .nc-attribute__content > div:nth-child(2) {
+    padding: 20px 22px !important;
+    border-left: 0;
+  }
+
+  .nc-attribute__content > div:nth-child(2) {
+    border-left: 1px solid color-mix(in srgb, var(--matrix-color) 20%, var(--matrix-line));
+  }
+
+  .nc-attribute__scale {
+    padding: 20px 22px 24px !important;
+    border-top: 1px solid color-mix(in srgb, var(--matrix-color) 20%, var(--matrix-line));
+    border-left: 0;
+  }
+
+  .nc-scale {
+    grid-template-columns: repeat(10, minmax(28px, 1fr));
+  }
+}
+
+/* =========================
+   Telefon
+   ========================= */
+
+@media (max-width: 650px) {
+  .nc-thread-post .postbody:has(.nc-attributes),
+  .postbody:has(.nc-attributes) {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+  }
+
+  .nc-attributes {
+    margin-top: 0 !important;
+    font-size: 13px !important;
+  }
+
+  .nc-attributes__header {
+    min-height: 220px;
+    padding: 25px 22px !important;
+  }
+
+  .nc-attributes__header::before {
+    top: 16px;
+    right: 17px;
+  }
+
+  .nc-attributes__header::after {
+    right: 18px;
+    bottom: 18px;
+    width: 76px;
+  }
+
+  .nc-attributes__header h2 {
+    margin-top: 53px !important;
+    font-size: 30px !important;
+    letter-spacing: .04em !important;
+  }
+
+  .nc-attributes__header p {
+    margin: 23px 0 0 !important;
+    font-size: 13px !important;
+  }
+
+  .nc-attribute__top {
+    grid-template-columns: 50px minmax(0, 1fr);
+  }
+
+  .nc-attribute__code {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 84px;
+    font-size: 25px !important;
+  }
+
+  .nc-attribute__title {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 17px 14px !important;
+  }
+
+  .nc-attribute__title span {
+    font-size: 21px !important;
   }
 
   .nc-attribute__status {
     grid-column: 1 / -1;
-    width: max-content;
+    grid-row: 2;
+    margin: 0 14px 14px !important;
   }
 
   .nc-attribute__content {
     grid-template-columns: 1fr;
-    gap: 18px;
+  }
+
+  .nc-attribute__content > div:nth-child(2) {
+    border-top: 1px solid color-mix(in srgb, var(--matrix-color) 20%, var(--matrix-line));
+    border-left: 0;
   }
 
   .nc-scale {
     grid-template-columns: repeat(5, 1fr);
+  }
+
+  .nc-scale__legend {
+    font-size: 6px !important;
+  }
+}
+
+/* Awaryjne zachowanie dla przeglądarek bez :has().
+   Komponent nadal działa, lecz pozostaje w standardowej szerokości treści. */
+@supports not selector(.content:has(.nc-attributes)) {
+  .nc-attributes {
+    max-width: 100% !important;
   }
 }
